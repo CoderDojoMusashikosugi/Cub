@@ -1,0 +1,6 @@
+version: '3'
+services:
+  ros-sys:
+    build: ./ros-sys/
+    volumes:
+      - ./ros-sys:/cub/ros-sys
