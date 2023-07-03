@@ -2,6 +2,8 @@ FROM ubuntu:22.04
 
 ENV DEBIAN_FRONTEND noninteractive
 
+ENV ROS_DISTRO humble
+
 RUN apt update && apt install -y locales software-properties-common tzdata -y
 RUN locale-gen en_US en_US.UTF-8
 RUN update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
@@ -17,15 +19,14 @@ RUN apt update
 RUN apt upgrade -y
 
 RUN apt install -y python3-pcl
-
-ENV ROS_DISTRO humble
 RUN apt install -y ros-$ROS_DISTRO-desktop
 
 RUN apt install -y python3-colcon-common-extensions python3-rosdep python3-argcomplete python3-vcstool
 
 RUN rosdep init && \
-    rosdep update && \
-    rosdep install --from-paths src --ignore-src -y --skip-keys "fastcdr rti-connext-dds-6.0.1 urdfdom_headers"
+    rosdep update
+
+RUN echo "source /opt/ros/$ROS_DISTRO/setup.bash" >> ~/.bashrc
 
 # COPY ./entrypoint.sh /
 # ENTRYPOINT [ "/bin/bash", "-c", "/entrypoint.sh" ]
