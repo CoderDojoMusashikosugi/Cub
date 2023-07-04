@@ -27,11 +27,21 @@ RUN apt install -y python3-colcon-common-extensions python3-colcon-core python3-
 RUN rosdep init && \
     rosdep update
 
-RUN echo "source /opt/ros/$ROS_DISTRO/setup.bash" >> ~/.bashrc
-
 # Utility install
-RUN apt install -y cu usbutils vim pip
+RUN apt install -y cu usbutils vim pip sudo
+
+# user add
+ARG UNAME=docker
+ARG UPASS=docker
+ARG UID=1000
+
+RUN useradd -m -u $UID --groups sudo $UNAME && \
+    echo $UNAME:$UPASS | chpasswd
+USER $UNAME
+
+RUN echo "source /opt/ros/$ROS_DISTRO/setup.bash" >> ~/.bashrc
 
 WORKDIR /cub
 COPY ./ws /cub
 # ENTRYPOINT [ "/bin/bash", "-c", "/cub/entrypoint.sh" ]
+
