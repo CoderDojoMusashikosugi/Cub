@@ -29,6 +29,7 @@ RUN rosdep init && \
 
 # Utility install
 RUN apt install -y cu usbutils vim pip sudo
+RUN pip install pyserial
 
 # user add
 ARG UNAME=docker
@@ -37,6 +38,7 @@ ARG UID=1000
 
 RUN useradd -m -u $UID --groups sudo $UNAME && \
     echo $UNAME:$UPASS | chpasswd
+RUN gpasswd --add $UNAME dialout
 USER $UNAME
 
 RUN echo "source /opt/ros/$ROS_DISTRO/setup.bash" >> ~/.bashrc
