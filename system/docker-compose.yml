@@ -1,6 +1,6 @@
 version: '3'
 services:
-  ros-sys:
-    build: ./ros-sys/
+  ros:
+    build: ./ros/
     volumes:
-      - ./ros-sys:/cub/ros-sys
+      - ./ros:/cub/ros
