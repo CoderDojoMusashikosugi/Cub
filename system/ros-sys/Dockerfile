@@ -2,6 +2,7 @@ FROM ubuntu:22.04
 
 ENV DEBIAN_FRONTEND noninteractive
 
+# ROS install
 ENV ROS_DISTRO humble
 
 RUN apt update && apt install -y locales software-properties-common tzdata -y
@@ -21,12 +22,16 @@ RUN apt upgrade -y
 RUN apt install -y python3-pcl
 RUN apt install -y ros-$ROS_DISTRO-desktop
 
-RUN apt install -y python3-colcon-common-extensions python3-rosdep python3-argcomplete python3-vcstool
+RUN apt install -y python3-colcon-common-extensions python3-colcon-core python3-rosdep python3-argcomplete python3-vcstool
 
 RUN rosdep init && \
     rosdep update
 
 RUN echo "source /opt/ros/$ROS_DISTRO/setup.bash" >> ~/.bashrc
 
-# COPY ./entrypoint.sh /
-# ENTRYPOINT [ "/bin/bash", "-c", "/entrypoint.sh" ]
+# Utility install
+RUN apt install -y cu usbutils vim pip
+
+WORKDIR /cub
+COPY ./ws /cub
+# ENTRYPOINT [ "/bin/bash", "-c", "/cub/entrypoint.sh" ]
