@@ -30,6 +30,11 @@ RUN rosdep init && \
 # Utility install
 RUN apt install -y cu usbutils vim pip sudo
 
+# ublox
+RUN apt install libasio-dev
+RUN apt install ros-$ROS_DISTRO-diagnostic-updater
+RUN apt install ros-$ROS_DISTRO-rtcm-msgs
+
 # user add
 ARG UNAME=docker
 ARG UPASS=docker
