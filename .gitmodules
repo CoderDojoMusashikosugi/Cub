@@ -1,0 +1,6 @@
+[submodule "system/ros/ws/colcon/ublox"]
+	path = system/ros/ws/colcon/ublox
+	url = https://github.com/KumarRobotics/ublox
+[submodule "system/ros/ws/RTKLIB"]
+	path = system/ros/ws/RTKLIB
+	url = https://github.com/tomojitakasu/RTKLIB
