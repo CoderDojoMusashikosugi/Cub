@@ -1,9 +1,9 @@
-FROM ubuntu:22.04
+FROM ubuntu:20.04
 
 ENV DEBIAN_FRONTEND noninteractive
 
 # ROS install
-ENV ROS_DISTRO humble
+ENV ROS_DISTRO foxy
 
 RUN apt update && apt install -y locales software-properties-common tzdata -y
 RUN locale-gen en_US en_US.UTF-8
