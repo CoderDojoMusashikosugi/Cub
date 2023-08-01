@@ -3,7 +3,7 @@ RTK_BASE_STATION=ntrip1.bizstation.jp:E8B5845A
 RTK_SENSER_ADDRESS=ttyACM0
 
 cd /cub/colcon
-colcon build
+colcon build --cmake-clean-cache
 source install/setup.bash
 ros2 launch ublox_gps ublox_gps_node-launch.py &
 
