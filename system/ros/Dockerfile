@@ -35,6 +35,12 @@ RUN apt install libasio-dev
 RUN apt install ros-$ROS_DISTRO-diagnostic-updater
 RUN apt install ros-$ROS_DISTRO-rtcm-msgs
 
+# Hesai lidar
+RUN apt update
+RUN apt install -y libpcl-dev libpcap-dev libboost-dev libyaml-cpp-dev
+RUN apt install -y libprotobuf-dev protobuf-compiler
+
+
 # user add
 ARG UNAME=docker
 ARG UPASS=docker
