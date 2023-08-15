@@ -1,9 +1,9 @@
-FROM ubuntu:22.04
+FROM ubuntu:20.04
 
 ENV DEBIAN_FRONTEND noninteractive
 
 # ROS install
-ENV ROS_DISTRO humble
+ENV ROS_DISTRO foxy
 
 RUN apt update && apt install -y locales software-properties-common tzdata -y
 RUN locale-gen en_US en_US.UTF-8
@@ -30,6 +30,17 @@ RUN rosdep init && \
 # Utility install
 RUN apt install -y cu usbutils vim pip sudo
 
+# ublox
+RUN apt install libasio-dev
+RUN apt install ros-$ROS_DISTRO-diagnostic-updater
+RUN apt install ros-$ROS_DISTRO-rtcm-msgs
+
+# Hesai lidar
+RUN apt update
+RUN apt install -y libpcl-dev libpcap-dev libboost-dev libyaml-cpp-dev
+RUN apt install -y libprotobuf-dev protobuf-compiler
+
+
 # user add
 ARG UNAME=docker
 ARG UPASS=docker
@@ -37,6 +48,7 @@ ARG UID=1000
 
 RUN useradd -m -u $UID --groups sudo $UNAME && \
     echo $UNAME:$UPASS | chpasswd
+RUN gpasswd --add $UNAME dialout
 USER $UNAME
 
 RUN echo "source /opt/ros/$ROS_DISTRO/setup.bash" >> ~/.bashrc
