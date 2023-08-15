@@ -1,4 +1,5 @@
-# Cub
+# 環境
+- ros2 : foxy (humble & galactic検討中)
 
 # build & run docker
 
