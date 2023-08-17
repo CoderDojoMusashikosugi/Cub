@@ -49,7 +49,14 @@ ARG UPASS=docker
 ARG UID=1000
 
 RUN useradd -m -u $UID --groups sudo $UNAME && \
-    echo $UNAME:$UPASS | chpasswd
+    echo $UNAME:$UPASS | chpasswd && \
+    usermod --shell /bin/bash $UNAME && \
+    usermod -aG sudo $UNAME && \
+    echo "$UNAME ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/$UNAME && \
+    chmod 0440 /etc/sudoers.d/$UNAME && \
+    usermod  --uid 1000 $UNAME && \
+    groupmod --gid 1000 $UNAME
+
 RUN gpasswd --add $UNAME dialout
 USER $UNAME
 
