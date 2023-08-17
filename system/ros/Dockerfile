@@ -27,19 +27,21 @@ RUN apt install -y python3-colcon-common-extensions python3-colcon-core python3-
 RUN rosdep init && \
     rosdep update
 
+# RUN rosdep install -i --from-paths ./ws/colcon/urg_node2
+
 # Utility install
 RUN apt install -y cu usbutils vim pip sudo
+RUN apt install ros-$ROS_DISTRO-diagnostic-updater
+RUN apt install ros-$ROS_DISTRO-rtcm-msgs
+RUN apt install ros-$ROS_DISTRO-laser-proc
 
 # ublox
 RUN apt install libasio-dev
-RUN apt install ros-$ROS_DISTRO-diagnostic-updater
-RUN apt install ros-$ROS_DISTRO-rtcm-msgs
 
 # Hesai lidar
 RUN apt update
 RUN apt install -y libpcl-dev libpcap-dev libboost-dev libyaml-cpp-dev
 RUN apt install -y libprotobuf-dev protobuf-compiler
-
 
 # user add
 ARG UNAME=docker

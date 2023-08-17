@@ -1,3 +1,6 @@
 [submodule "system/ros/ws/colcon/HesaiLidar_General_ROS"]
 	path = system/ros/ws/colcon/HesaiLidar_General_ROS
 	url = https://github.com/HesaiTechnology/HesaiLidar_General_ROS.git
+[submodule "system/ros/ws/colcon/urg_node2"]
+	path = system/ros/ws/colcon/urg_node2
+	url = https://github.com/Hokuyo-aut/urg_node2.git
