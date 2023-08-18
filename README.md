@@ -6,6 +6,8 @@
 git clone https://github.com/CoderDojoMusashikosugi/Cub.git
 cd Cub
 git submodule update --init
+cd system/ros/ws/colcon/urg_node2
+git submodule update --init
 ```
 
 # Configuration
@@ -29,12 +31,12 @@ dockerの実行
 source start.sh
 ```
 
-build ros2
+ros2のビルド
 ```
 source scripts/ros.sh
 ```
 
-launch 2D-lidar
+2D-lidarの実行
 ```
 source ../scripts/lidar2d.sh
 ```
