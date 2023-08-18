@@ -37,7 +37,7 @@ ros2のビルド
 source scripts/ros.sh
 ```
 
-2D-lidarの実行
+2D-lidarの実行（**/scan**トピックに点群データが通知されます。）
 ```
 source ../scripts/lidar2d.sh
 ```
