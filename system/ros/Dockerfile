@@ -30,6 +30,7 @@ RUN rosdep init && \
 # RUN rosdep install -i --from-paths ./ws/colcon/urg_node2
 
 # Utility install
+RUN apt update
 RUN apt install -y cu usbutils vim pip sudo
 RUN apt install ros-$ROS_DISTRO-diagnostic-updater
 RUN apt install ros-$ROS_DISTRO-rtcm-msgs
